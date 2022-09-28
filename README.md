@@ -2,7 +2,7 @@
 
 ### BAIGNE Nathan - CHARLES Mathieu - DOUR Lucie - GAUTIER Nicolas - MAINGUENÉ Théo
 
-https://mensuel.framapad.org/p/cai_web_lets_climb-9r51?lang=en
+https://www.canva.com/design/DAEvOSS0t4A/FbAqEuvHdSKZnyLCHHjEIQ/edit?utm_content=DAEvOSS0t4A&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 
 
