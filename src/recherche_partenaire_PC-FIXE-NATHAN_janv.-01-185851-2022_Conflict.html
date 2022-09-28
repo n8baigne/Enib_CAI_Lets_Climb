@@ -1,0 +1,374 @@
+<link href='styles/bootstrapCalendar.css' rel='stylesheet' />
+<div class="container">
+    <hr class="featurette-divider">
+
+    <div class="row d-flex justify-content-center align-items-center">
+
+        <div class="col-12 col-lg-6 ">
+            <iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-4.500132501125337%2C48.389225528413796%2C-4.496591985225678%2C48.390757308139044&amp;layer=mapnik"
+                style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/48.38999/-4.49836">Afficher une carte plus grande</a></small>
+        </div>
+
+        <div class="col-12 col-lg-6 " id="recherches">
+
+
+
+
+
+            <h2 class="featurette-heading">Proposer une session ! </h2>
+
+            <form>
+
+
+
+
+                <input type="date" id="date" />
+
+                <script>
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+                    var yyyy = today.getFullYear();
+                    if (dd < 10) {
+                        dd = '0' + dd
+                    }
+                    if (mm < 10) {
+                        mm = '0' + mm
+                    }
+
+                    today = yyyy + '-' + mm + '-' + dd;
+                    document.getElementById("date").setAttribute("min", today);
+                </script>
+
+                <label for="lieu">où</label>
+                <select name="lieu" id="lieu">
+                    <option value="Climb-up">Climb-up</option>
+                    <option value="The roof">The roof</option>
+                    <option value="Le cube">Le cube</option>
+                </select>
+                <label for="heure">à</label>
+                <input type="time" name="heure" id="heure">
+
+                <button type="button" class="btn btn-primary" onclick="add()">+</button>
+            </form>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="row bg-dark text-light my-4 ">
+        <div class="col-10">
+            <h2 class="featurette-heading">Tu recherches une session ?</h2>
+        </div>
+
+        <div class="col-2 ">préférences</div>
+
+    </div>
+
+
+
+    <div style="overflow:scroll; height:350px;" class="m-2">
+
+
+        <div class="card card-body m-2 " id="recherche_1">
+            <div class="row  align-items-center">
+
+                <div class="col-2 ">
+                    <div class="row justify-content-center">
+                        <h3>Julie</h3>
+                    </div>
+                    <div class="row justify-content-center"><img class="photo_profil" src="./img/photos_profil/Julie.jpg"></div>
+                </div>
+
+                <div class="col-2">
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+                    <div class="row justify-content-center">
+                        <p>à 15:00</p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="row justify-content-center">lieu</div>
+                    <div class="row justify-content-center"><select disabled="disabled"><option value="Climb-up">Climb-up</option></select></div>
+                </div>
+                <div class="col-3">
+                    <div class="row justify-content-center">matériel</div>
+                    <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled" style="resize: none;">chaussons, 2x tapis, baudrier</textarea></div>
+                </div>
+                <div class="col-1">
+                    <div class="row justify-content-center">niveau</div>
+                    <div class="row justify-content-center">6B</div>
+                </div>
+                <div class="col-2 justify-content-center">
+                    <<<<<<< HEAD <div class="row justify-content-center"><button type="submit" class="btn btn-primary" onclick="join('recherche_1')" id="recherche_button_1">Rejoindre</button></div>
+                =======
+                <div class="row justify-content-center"><button type="submit" class="btn btn-primary" onclick="join('recherche_1')">Rejoindre</button></div>
+                >>>>>>> nathan
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card card-body m-2 " id="recherche_2">
+        <div class="row  align-items-center">
+
+            <div class="col-2 ">
+                <div class="row justify-content-center">
+                    <h3>Elvis</h3>
+                </div>
+                <div class="row justify-content-center"><img class="photo_profil" src="./img/photos_profil/Elvis.jpg"></div>
+            </div>
+
+            <div class="col-2">
+                <div class="row justify-content-center"><input type="date" name="date" value="2021-12-24" disabled="disabled" /></div>
+                <div class="row justify-content-center">
+                    <p>à 18:00</p>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row justify-content-center">lieu</div>
+                <div class="row justify-content-center"><select disabled="disabled"><option value="The roof">The roof</option></select></div>
+            </div>
+            <div class="col-3">
+                <div class="row justify-content-center">matériel</div>
+                <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled" style="resize: none;">chaussons, baudrier</textarea></div>
+            </div>
+            <div class="col-1">
+                <div class="row justify-content-center">niveau</div>
+                <div class="row justify-content-center">7A</div>
+            </div>
+            <div class="col-2 justify-content-center">
+                <div class="row justify-content-center"><button type="submit" class="btn btn-primary" onclick="join('recherche_2')">Rejoindre</button></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card card-body m-2 " id="recherche_3">
+        <div class="row  align-items-center">
+
+            <div class="col-2 ">
+                <div class="row justify-content-center">
+                    <h3>Mathilde</h3>
+                </div>
+                <div class="row justify-content-center"><img class="photo_profil" src="./img/photos_profil/Mathilde.jpg"></div>
+            </div>
+
+            <div class="col-2">
+                <div class="row justify-content-center"><input type="date" name="date" value="2021-12-20" disabled="disabled" /></div>
+                <div class="row justify-content-center">
+                    <p>à 10:30</p>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row justify-content-center">lieu</div>
+                <div class="row justify-content-center"><select disabled="disabled"><option value="Climb-up">Climb-up</option></select></div>
+            </div>
+            <div class="col-3">
+                <div class="row justify-content-center">matériel</div>
+                <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled" style="resize: none;">chaussons</textarea></div>
+            </div>
+            <div class="col-1">
+                <div class="row justify-content-center">niveau</div>
+                <div class="row justify-content-center">5C</div>
+            </div>
+            <div class="col-2 justify-content-center">
+                <div class="row justify-content-center"><button type="submit" class="btn btn-primary" onclick="join('recherche_3')">Rejoindre</button></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="row bg-dark text-light my-4">
+    <div class="col-12">
+        <h2 class="featurette-heading">Mes sessions proposées</h2>
+    </div>
+</div>
+
+<div style="overflow:scroll; height:350px;" class="m-2" id="mes_propositions">
+
+    <div class="card card-body m-2 " id="mes_prop_1">
+        <div class="row  align-items-center">
+
+
+
+            <div class="col-2">
+                <div class="row justify-content-center"> <input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+            </div>
+
+            <div class="col-1">
+                <div class="row justify-content-center">
+                    <p>à 15:00</p>
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="row justify-content-center">lieu</div>
+                <div class="row justify-content-center"><select disabled="disabled"><option value="Climb-up">Climb-up</option></select></div>
+            </div>
+            <div class="col-3">
+                <div class="row justify-content-center">matériel</div>
+                <div class="row justify-content-center"><textarea rows="1" cols="30" style="resize: none;" disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div>
+            </div>
+            <div class="col-1">
+                <div class="row justify-content-center">niveau</div>
+                <div class="row justify-content-center">6B</div>
+            </div>
+            <div class="col-2 justify-content-center">
+                <div class="row justify-content-center"><button type="submit" class="btn btn-primary " data-toggle="modal" data-target="#modal_modify">Modifier</button></div>
+            </div>
+
+            <div class="col-1 ">
+                <button type="button" class="close" aria-label="Close" onclick="hide('mes_prop_1')"><span aria-hidden="true">&times;</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-body m-2 " id="mes_prop_2">
+        <div class="row  align-items-center">
+
+
+
+            <div class="col-2">
+                <div class="row justify-content-center"> <input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+            </div>
+
+            <div class="col-1">
+                <div class="row justify-content-center">
+                    <p>à 15:00</p>
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div class="row justify-content-center">lieu</div>
+                <div class="row justify-content-center"><select disabled="disabled"><option value="Climb-up">Climb-up</option></select></div>
+            </div>
+            <div class="col-3">
+                <div class="row justify-content-center">matériel</div>
+                <div class="row justify-content-center"><textarea rows="1" cols="30" style="resize: none;" disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div>
+            </div>
+            <div class="col-1">
+                <div class="row justify-content-center">niveau</div>
+                <div class="row justify-content-center">6B</div>
+            </div>
+            <div class="col-2 justify-content-center">
+                <div class="row justify-content-center"><button type="submit" class="btn btn-primary ">Modifier</button></div>
+            </div>
+
+            <div class="col-1 ">
+                <button type="button" class="close" aria-label="Close" onclick="hide('mes_prop_2')"><span aria-hidden="true">&times;</span></button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+<div class="modal fade" id="modal_modify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var i = 3;
+
+
+
+
+
+    function hide(id) {
+
+        var r = confirm("Supprimer l'annonce ?");
+        if (r == true) {
+            var up = document.getElementById(id);
+            up.remove();
+        }
+
+    }
+
+    function join(id) {
+        var r = confirm("Voulez vous rejoindre ?");
+        if (r) {
+            alert("Félicitation! Vous avez trouvé un partenaire");
+
+            var up = document.getElementById(id);
+            up.remove();
+
+        }
+    }
+
+    function add() {
+
+
+
+        let date = document.getElementById("date").value
+        let lieu = document.getElementById("lieu").value
+        let heure = document.getElementById("heure").value
+
+
+        if (date == "" || heure == "") {
+            alert("champs incomplets ");
+        } else {
+
+
+
+            i++;
+
+            let htmlContent1 = '<div class="card card-body m-2 " id="mes_prop_' + i + '"><div class="row  align-items-center"><div class="col-2"><div class="row justify-content-center"> <input type="date" name="date" value=\"' + date + '\" disabled="disabled" /></div></div><div class="col-1">' +
+                '<div class="row justify-content-center"><p>à ' + heure + '</p></div></div><div class="col-2"><div class="row justify-content-center">lieu</div><div class="row justify-content-center"><select disabled="disabled"><option value="Climb-up">' + lieu + '</option></select></div>' +
+                '</div><div class="col-3"><div class="row justify-content-center">matériel</div><div class="row justify-content-center"><textarea rows="1" cols="30" style="resize: none;"disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div></div><div class="col-1">' +
+                '<div class="row justify-content-center">niveau</div><div class="row justify-content-center">6B</div></div><div class="col-2 justify-content-center"><div class="row justify-content-center"><button type="submit" class="btn btn-primary ">Modifier</button></div>' +
+                '</div><div class="col-1 "><button type="button" class="close"  aria-label="Close" onclick="hide(\'mes_prop_' + i + '\')"><span aria-hidden="true">&times;</span></button></div></div></div>'
+            let mes_propositions = document.getElementById('mes_propositions');
+            mes_propositions.insertAdjacentHTML('beforeend', htmlContent1);
+
+            let htmlContent2 = '<div class="alert alert-success alert-dismissible">' +
+                '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                '<strong>Success!</strong> Félicitation vous avez crée une nouvelle session </div>';
+            let recherches = document.getElementById('recherches');
+            recherches.insertAdjacentHTML('beforeend', htmlContent2);
+        }
+    }
+
+    function modify(id) {
+
+
+    }
+</script>
+
+
+
+
+
+
+
+</div>

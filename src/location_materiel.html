@@ -1,0 +1,370 @@
+<link href='styles/bootstrapCalendar.css' rel='stylesheet' />
+<div class="container marketing" id='mainContainer'>
+    <hr class="featurette-divider">
+
+    <div class="row featurette" id="rechercheContainer">
+        <!-- Open street map pointant sur la salle d'escalade de brest -->
+        <div class="col-md-7">  
+            <iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-4.500132501125337%2C48.389225528413796%2C-4.496591985225678%2C48.390757308139044&amp;layer=mapnik"
+                style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/48.38999/-4.49836">Afficher une carte plus grande</a></small> </div>
+        <!-- Formulaire pour le tri de la recherche -->
+        <div class="col-md-5">
+
+            <!-- Titre pour le formulaire  -->
+            <div class="row bg-dark text-light my-4">
+                <h2 class="featurette-heading">Selectionner votre équipements :</h2>
+            </div>
+
+            <!-- Formulaire -->
+            <!-- Choix de matériels -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="chaussons">
+                <label class="form-check-label" for="chaussons">
+                    Chaussons d’escalade
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="baudrier">
+                <label class="form-check-label" for="baudrier ">
+                    Baudrier
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="tapis" disabled>
+                <label class="form-check-label" for="tapis">
+                    tapis
+                </label>
+            </div>
+
+            <!-- Dates d'emprunt et de retour -->
+            <div class="form-group row">
+                <div class="col-sm-6">Date d'emprunt</div>
+                <div class="col-sm-6"><input type="date" id="dateEmprunt" /></div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">Date de retour</div>
+                <div class="col-sm-4"><input type="date" id="dateRetour" /></div>
+            </div>
+
+            <!-- Bouton de recherche -->
+            <div class="form-group row">
+                <button type="submit" id="btnRecherche" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- ######################### Modal #########################-->
+
+    <div class="modal fade" id="modal_modify" tabindex="-1" role="dialog" aria-labelledby="modalModifyCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Proposer mon matériels</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Début Formulaire pour proposer du matériel  -->
+                    <form>
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">City</label>
+                                <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">Country</label>
+                                <input type="text" class="form-control" id="inputCountry">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputZip">Zip</label>
+                                <input type="text" class="form-control" id="inputZip">
+                            </div>
+                        </div>
+                        <!-- Selection des equipements à louer -->
+                        <div class="form-group row">
+                            <div class="col-sm-6">Matériel(s) loué(s)</div>
+                            <div class="col-sm-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                    <label class="form-check-label" for="gridCheck1">
+                          Example checkbox
+                        </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck2">
+                                    <label class="form-check-label" for="gridCheck2">
+                          Example checkbox
+                        </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck3">
+                                    <label class="form-check-label" for="gridCheck3">
+                          Example checkbox
+                        </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Choix des dates  -->
+                        <div class="form-group row">
+                            <div class="col-sm-6">Date d'emprunt</div>
+                            <div class="col-sm-6"><input type="date" id="date1" /></div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">Date de retour</div>
+                            <div class="col-sm-4"><input type="date" id="date2" /></div>
+                        </div>
+                        <!-- Prix de location  -->
+                        <div class="form-group row">
+                            <div class="col-sm-6">Prix de location</div>
+                            <div class="col-sm-4 begin"><input type="text" class="form-control" id="inputPrice"></div>
+                        </div>
+
+                    </form>
+                    <!-- Fin Formulaire pour proposer du matériel  -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onClick="proposer()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ######################### Listes déroulantes pour les locations disponibles #########################-->
+
+    <!-- En tête du container -->
+    <div class="row bg-dark align-items-center text-light my-4" >
+        <div class="col-8"><h2 class="featurette-heading">Locations disponibles :</h2></div>
+
+        <!-- Bouton pour lancer le modal et la proposition de matériel à la location -->
+        <div class="col-4">
+            <button type="button" class="btn btn-primary" onclick="display('modal_modify')">
+                + Proposer mon matériels
+            </button>
+        </div>
+    </div>
+
+
+    <div style="overflow:scroll; height:350px;" class="m-2">
+        <!-- Annonce 1  -->
+        <div class="card card-body m-2 " id="location_1">
+            <div class="row  align-items-center">
+
+                <div class="col-2 ">
+                    <div class="row justify-content-center">
+                        <h3>Julie</h3>
+                    </div>
+                    <div class="row justify-content-center"><img class="photo_profil" src="./img/photos_profil/Julie.jpg"></div>
+                </div>
+
+                <div class="col-2">
+                    <div class="row justify-content-center">
+                        <p>Date d'emprunt</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-20" disabled="disabled" /></div>
+                    <div class="row justify-content-center">
+                        <p>Date de retour</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+                </div>
+                <div class="col-2">
+                    <div class="row justify-content-center">Adresse</div>
+                    <div class="row justify-content-center">30 rue de la grimpe</div>
+                </div>
+                <div class="col-3">
+                    <div class="row justify-content-center">matériel loué</div>
+                    <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div>
+                </div>
+                <div class="col-1">
+                    <div class="row justify-content-center">Prix</div>
+                    <div class="row justify-content-center">20€/jour</div>
+                </div>
+                <div class="col-2 justify-content-center">
+                    <div class="row justify-content-center"><button type="submit" class="btn btn-primary " onclick="join('location_1')">Louer</button></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Annonce 2  -->
+        <div class="card card-body m-2 " id="location_2">
+            <div class="row  align-items-center">
+
+                <div class="col-2 ">
+                    <div class="row justify-content-center">
+                        <h3>Elvis</h3>
+                    </div>
+                    <div class="row justify-content-center"><img class="photo_profil" src="./img/photos_profil/Elvis.jpg"></div>
+                </div>
+
+                <div class="col-2">
+                    <div class="row justify-content-center">
+                        <p>Date d'emprunt</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-20" disabled="disabled" /></div>
+                    <div class="row justify-content-center">
+                        <p>Date de retour</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+                </div>
+                <div class="col-2">
+                    <div class="row justify-content-center">Adresse</div>
+                    <div class="row justify-content-center">30 rue de la grimpe</div>
+                </div>
+                <div class="col-3">
+                    <div class="row justify-content-center">matériel loué</div>
+                    <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div>
+                </div>
+                <div class="col-1">
+                    <div class="row justify-content-center">Prix</div>
+                    <div class="row justify-content-center">20€/jour</div>
+                </div>
+                <div class="col-2 justify-content-center">
+                    <div class="row justify-content-center"><button type="submit" class="btn btn-primary" onclick="join('location_2')">Louer</button></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Annonce 3  -->
+        <div class="card card-body m-2 " id="location_3">
+            <div class="row  align-items-center">
+
+                <div class="col-2 ">
+                    <div class="row justify-content-center">
+                        <h3>Mathilde</h3>
+                    </div>
+                    <div class="row justify-content-center"><img class="photo_profil" src="./img/photos_profil/Mathilde.jpg"></div>
+                </div>
+
+                <div class="col-2">
+                    <div class="row justify-content-center">
+                        <p>Date d'emprunt</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-20" disabled="disabled" /></div>
+                    <div class="row justify-content-center">
+                        <p>Date de retour</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+                </div>
+                <div class="col-2">
+                    <div class="row justify-content-center">Adresse</div>
+                    <div class="row justify-content-center">30 rue de la grimpe</div>
+                </div>
+                <div class="col-3">
+                    <div class="row justify-content-center">matériel loué</div>
+                    <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div>
+                </div>
+                <div class="col-1">
+                    <div class="row justify-content-center">Prix</div>
+                    <div class="row justify-content-center">20€/jour</div>
+                </div>
+                <div class="col-2 justify-content-center">
+                    <div class="row justify-content-center"><button type="submit" class="btn btn-primary " onclick="join('location_3')">Louer</button></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- div pour l'affichage des messages de Succes -->
+    <div id="notif_join"></div> 
+
+    <!-- En tête du container Mes locations -->
+    <div class="row bg-dark text-light my-4" >
+        <div class="col-12"><h2 class="featurette-heading">Mes locations</h2></div>
+
+    </div>
+
+    <div style="overflow:scroll; height:350px;" class="m-2">
+         <!-- Mon annonce 1  -->
+        <div class="card card-body m-2" id ="mes_location_1">
+            <div class="row  align-items-center">
+                <div class="col-2">
+                    <div class="row justify-content-center">
+                        <p>Date d'emprunt</p>
+                    </div>
+                    <div class="row justify-content-center">
+                        <p>Date de retour</p>
+                    </div>
+                </div>
+
+                <div class="col-2">
+
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-20" disabled="disabled" /></div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+                </div>
+
+                <div class="col-2">
+                    <div class="row justify-content-center">Adresse</div>
+                    <div class="row justify-content-center">30 rue de la grimpe</div>
+                </div>
+                <div class="col-2">
+                    <div class="row justify-content-center">matériel loué</div>
+                    <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div>
+                </div>
+                <div class="col-1">
+                    <div class="row justify-content-center">Prix</div>
+                    <div class="row justify-content-center">20€/jour</div>
+                </div>
+                <div class="col-2 justify-content-center">
+                    <div class="row justify-content-center"><button type="submit" class="btn btn-primary " onclick="modify('mes_location_1')">Modifier</button></div>
+                </div>
+
+                <div class="col-1 justify-content-center">
+                    <button type="button" class="btn-close" aria-label="Close" onclick="hide('mes_location_1')"></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mon annonce 2  -->
+        <div class="card card-body m-2" id ="mes_location_2">
+            <div class="row  align-items-center">
+                <div class="col-2">
+                    <div class="row justify-content-center">
+                        <p>Date d'emprunt</p>
+                    </div>
+                    <div class="row justify-content-center">
+                        <p>Date de retour</p>
+                    </div>
+                </div>
+
+                <div class="col-2">
+
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-20" disabled="disabled" /></div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+                </div>
+
+                <div class="col-2">
+                    <div class="row justify-content-center">Adresse</div>
+                    <div class="row justify-content-center">30 rue de la grimpe</div>
+                </div>
+                <div class="col-2">
+                    <div class="row justify-content-center">matériel loué</div>
+                    <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div>
+                </div>
+                <div class="col-1">
+                    <div class="row justify-content-center">Prix</div>
+                    <div class="row justify-content-center">20€/jour</div>
+                </div>
+                <div class="col-2 justify-content-center">
+                    <div class="row justify-content-center"><button type="submit" class="btn btn-primary " onclick="modify('mes_location_2')">Modifier</button></div>
+                </div>
+
+                <div class="col-1 justify-content-center">
+                    <button type="button" class="btn-close" aria-label="Close" onclick="hide('mes_location_2')"></button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- Fichier javascript -->
+    <script src="./js/location.js"></script>
+</div>

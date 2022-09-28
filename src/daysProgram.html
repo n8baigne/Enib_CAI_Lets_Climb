@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="./styles/roundIcons.css">
+<link rel="stylesheet" href="./styles/image.css">
+
+<div class="container">
+    <div class="row dateStyle align-middle text-center" id="dateCol">
+        <!-- display date using JS -->
+    </div>
+    <div class="row" id="iconsCol">
+        <!-- Display icons using JS-->
+    </div>
+    <div class="row">
+        <div class="col">
+            <br/>
+            <br/>
+            <!-- User's activities title -->
+            <div class="row bg-dark text-light my-4 panel-heading">
+                <h2 class="featurette-heading">Vos activités</h2>
+            </div>
+
+            <div class="panel-body list-group" id="userRequests">
+                <!-- filled up with JS -->
+            </div>
+            <br/>
+            <br/>
+
+            <!-- User's propositions title -->
+            <div class="row bg-dark text-light my-4 panel-heading">
+                <h2 class="featurette-heading">Vos propositions</h2>
+            </div>
+            <div class="panel-body list-group" id="userPropositions">
+                <!-- filled up with JS -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalAction" tabindex="-1" role="dialog" aria-labelledby="modalActionTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modification de la session</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Sélectionnez une action
+            </div>
+            <div class="modal-footer">
+                <!-- data-dismiss="modal" -->
+                <button type="button" class="btn btn-secondary" onclick="onClickActionModal(0)">Annuler</button>
+                <button type="button" class="btn btn-primary" onclick="onClickActionModal(1)">Supprimer</button>
+                <button id="modalBtnJoin" type="button" class="btn btn-primary" onclick="onClickActionModal(2)">Rejoindre</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./js/daysProgram.js"></script>
+<script>
+    initIcons();
+    displayDate();
+    displayIcons();
+
+    displayUserRequests();
+    displayUserPropositions();
+
+    console.log(userRequests);
+</script>
+<style>
+    .dateStyle {
+        font-weight: bold;
+        font-size: 3em;
+    }
+    
+    .smallDateStyle {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    
+    .profilePicStyle {
+        width: 3em;
+        height: auto;
+    }
+</style>

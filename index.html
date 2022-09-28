@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Let's climb</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./styles/bootstrap.css">
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/global.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+    <link href='ressources/fullcalendar/lib/main.css' rel='stylesheet' />
+    <link href="./styles/icons.css" rel="stylesheet">
+    <link href='styles/home.css' rel='stylesheet' />
+    <link href='styles/bootstrapCalendar.css' rel='stylesheet' />
+    <link rel="stylesheet" href="./styles/image.css">
+
+
+
+    <script>
+        var variable = "<div class=\"row\"><div class=\"col-md-12\"><div class=\"error-template text-center\"><h1>Oops!</h1><h2>404 Not Found</h2><div class=\"error-details\">Désolé, une erreur s'est produite ! Le contenu html ne peut pas se charger si le navigateur n'autorise pas l'accès au répertoir local.</div><h1>Solution :</h1><h2 style=\"margin-top:50px\">Lancer l'application depuis Chrome <i class=\"fab fa-chrome fa-1x\"></i> via la ligne de commande :  <code>&lt;start chrome -allow-file-access-from-files&gt;</code></h2><div class=\"error-details\">(Veillez à ce que Chrome <i class=\"fab fa-chrome fa-1x\"></i> soit complètement fermé avant de lancer la commande)</div></div></div></div>";
+
+        $(document).ready(function() {
+            $("#header").load("./layouts/header.html", function(responseTxt, statusTxt, xhr) {
+                if (statusTxt === "success")
+                    navigateToHome();
+                $("#footer").load("./layouts/footer.html");
+                if (statusTxt === "error")
+                    $("#content").html(htmlErrorTextFilesAccessError)
+            });
+        });
+    </script>
+
+</head>
+<div id="header" class="fixed-top"></div>
+
+<body>
+    <div id="content" style="margin-top: 75px;margin-bottom: 75px;"></div>
+</body>
+<div id="footer" class="fixed-bottom"></div>
+
+</html>

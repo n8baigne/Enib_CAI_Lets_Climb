@@ -1,0 +1,33 @@
+.roundIcon
+{
+    display: inline-block;
+    margin: 0px;
+    color: white;
+ 
+    width : 1em;
+    height: 1em;
+    border-radius: 50%;
+    border: solid;
+    /* border-width: 0.08em; */
+    border-width: 0em;
+    border-color: black;
+ 
+    text-align: center;
+    line-height: 3em;
+    font-size: 2em;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+}
+
+.redBackground{
+    background-color: red;
+}
+.greenBackground{
+    background-color: green;
+}
+.cyanBackground{
+    background-color: cyan;
+}
+.blackBackground{
+    background-color: black;
+}

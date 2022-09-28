@@ -1,0 +1,6 @@
+.photo_profil {
+    width: 80px;
+    height: 80px;
+    clip-path: ellipse(50% 50%);
+    padding: 0px;
+}

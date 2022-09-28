@@ -1,0 +1,431 @@
+<link href='styles/bootstrapCalendar.css' rel='stylesheet' />
+<div class="container marketing" id='mainContainer'>
+    <hr class="featurette-divider">
+
+    <div class="row featurette" id="rechercheContainer">
+
+        <div class="col-md-7">
+            <iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-4.500132501125337%2C48.389225528413796%2C-4.496591985225678%2C48.390757308139044&amp;layer=mapnik"
+                style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/48.38999/-4.49836">Afficher une carte plus grande</a></small> </div>
+        <div class="col-md-5">
+
+            <!-- Titre pour le formulaire  -->
+            <div class="row bg-dark text-light my-4">
+                <h2 class="featurette-heading">Selectionner votre équipements :</h2>
+            </div>
+
+            <!-- Formulaire -->
+            <!-- Choix de matériels -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="chaussons">
+                <label class="form-check-label" for="chaussons">
+                    Chaussons d’escalade
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="baudrier">
+                <label class="form-check-label" for="baudrier ">
+                    Baudrier
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="tapis" disabled>
+                <label class="form-check-label" for="tapis">
+                    tapis
+                </label>
+            </div>
+
+            <!-- Dates d'emprunt et de retour -->
+            <div class="form-group row">
+                <div class="col-sm-6">Date d'emprunt</div>
+                <div class="col-sm-6"><input type="date" id="dateEmprunt" /></div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">Date de retour</div>
+                <div class="col-sm-4"><input type="date" id="dateRetour" /></div>
+            </div>
+
+            <!-- Bouton de recherche -->
+            <div class="form-group row">
+                <button type="submit" id="btnRecherche" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Titre + préférences -->
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Début Formulaire pour proposer du matériel  -->
+                    <form>
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">City</label>
+                                <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">Country</label>
+                                <input type="text" class="form-control" id="inputCountry">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputZip">Zip</label>
+                                <input type="text" class="form-control" id="inputZip">
+                            </div>
+                        </div>
+                        <!-- Selection des equipements à louer -->
+                        <div class="form-group row">
+                            <div class="col-sm-6">Matériel(s) loué(s)</div>
+                            <div class="col-sm-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                    <label class="form-check-label" for="gridCheck1">
+                          Example checkbox
+                        </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck2">
+                                    <label class="form-check-label" for="gridCheck2">
+                          Example checkbox
+                        </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck3">
+                                    <label class="form-check-label" for="gridCheck3">
+                          Example checkbox
+                        </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Choix des dates  -->
+                        <div class="form-group row">
+                            <div class="col-sm-6">Date d'emprunt</div>
+                            <div class="col-sm-6"><input type="date" id="date1" /></div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">Date de retour</div>
+                            <div class="col-sm-4"><input type="date" id="date2" /></div>
+                        </div>
+                        <!-- Prix de location  -->
+                        <div class="form-group row">
+                            <div class="col-sm-6">Prix de location</div>
+                            <div class="col-sm-4 begin"><input type="text" class="form-control" id="inputPrice"></div>
+                        </div>
+
+                    </form>
+                    <!-- Fin Formulaire pour proposer du matériel  -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onClick="proposer()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ######################### Listes déroulantes #########################-->
+    <div class="row bg-dark align-items-center text-light my-4">
+        <div class="col-9">
+            <h2 class="featurette-heading">Tu recherches une session ?</h2>
+        </div>
+        <div class="col-end">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                + Proposer mon matériels
+            </button>
+        </div>
+    </div>
+
+
+    <div style="overflow:scroll; height:350px;" class="m-2">
+        <div class="card card-body m-2 ">
+            <div class="row  align-items-center">
+
+                <div class="col-2 ">
+                    <div class="row justify-content-center">
+                        <h3>Julie</h3>
+                    </div>
+                    <div class="row justify-content-center"><img class="photo_profil" src="./img/photos_profil/Julie.jpg"></div>
+                </div>
+
+                <div class="col-2">
+                    <div class="row justify-content-center">
+                        <p>Date d'emprunt</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-20" disabled="disabled" /></div>
+                    <div class="row justify-content-center">
+                        <p>Date de retour</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+                </div>
+                <div class="col-2">
+                    <div class="row justify-content-center">Adresse</div>
+                    <div class="row justify-content-center">30 rue de la grimpe</div>
+                </div>
+                <div class="col-3">
+                    <div class="row justify-content-center">matériel loué</div>
+                    <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div>
+                </div>
+                <div class="col-1">
+                    <div class="row justify-content-center">Prix</div>
+                    <div class="row justify-content-center">20€/jour</div>
+                </div>
+                <div class="col-2 justify-content-center">
+                    <div class="row justify-content-center"><button type="submit" class="btn btn-primary ">Rejoindre</button></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card card-body m-2 ">
+            <div class="row  align-items-center">
+
+                <div class="col-2 ">
+                    <div class="row justify-content-center">
+                        <h3>Julie</h3>
+                    </div>
+                    <div class="row justify-content-center"><img class="photo_profil" src="./img/photos_profil/Julie.jpg"></div>
+                </div>
+
+                <div class="col-2">
+                    <div class="row justify-content-center">
+                        <p>Date d'emprunt</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-20" disabled="disabled" /></div>
+                    <div class="row justify-content-center">
+                        <p>Date de retour</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+                </div>
+                <div class="col-2">
+                    <div class="row justify-content-center">Adresse</div>
+                    <div class="row justify-content-center">30 rue de la grimpe</div>
+                </div>
+                <div class="col-3">
+                    <div class="row justify-content-center">matériel loué</div>
+                    <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div>
+                </div>
+                <div class="col-1">
+                    <div class="row justify-content-center">Prix</div>
+                    <div class="row justify-content-center">20€/jour</div>
+                </div>
+                <div class="col-2 justify-content-center">
+                    <div class="row justify-content-center"><button type="submit" class="btn btn-primary ">Rejoindre</button></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card card-body m-2 ">
+            <div class="row  align-items-center">
+
+                <div class="col-2 ">
+                    <div class="row justify-content-center">
+                        <h3>Julie</h3>
+                    </div>
+                    <div class="row justify-content-center"><img class="photo_profil" src="./img/photos_profil/Julie.jpg"></div>
+                </div>
+
+                <div class="col-2">
+                    <div class="row justify-content-center">
+                        <p>Date d'emprunt</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-20" disabled="disabled" /></div>
+                    <div class="row justify-content-center">
+                        <p>Date de retour</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+                </div>
+                <div class="col-2">
+                    <div class="row justify-content-center">Adresse</div>
+                    <div class="row justify-content-center">30 rue de la grimpe</div>
+                </div>
+                <div class="col-3">
+                    <div class="row justify-content-center">matériel loué</div>
+                    <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div>
+                </div>
+                <div class="col-1">
+                    <div class="row justify-content-center">Prix</div>
+                    <div class="row justify-content-center">20€/jour</div>
+                </div>
+                <div class="col-2 justify-content-center">
+                    <div class="row justify-content-center"><button type="submit" class="btn btn-primary ">Rejoindre</button></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card card-body m-2 ">
+            <div class="row  align-items-center">
+
+                <div class="col-2 ">
+                    <div class="row justify-content-center">
+                        <h3>Julie</h3>
+                    </div>
+                    <div class="row justify-content-center"><img class="photo_profil" src="./img/photos_profil/Julie.jpg"></div>
+                </div>
+
+                <div class="col-2">
+                    <div class="row justify-content-center">
+                        <p>Date d'emprunt</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-20" disabled="disabled" /></div>
+                    <div class="row justify-content-center">
+                        <p>Date de retour</p>
+                    </div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+                </div>
+                <div class="col-2">
+                    <div class="row justify-content-center">Adresse</div>
+                    <div class="row justify-content-center">30 rue de la grimpe</div>
+                </div>
+                <div class="col-3">
+                    <div class="row justify-content-center">matériel loué</div>
+                    <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div>
+                </div>
+                <div class="col-1">
+                    <div class="row justify-content-center">Prix</div>
+                    <div class="row justify-content-center">20€/jour</div>
+                </div>
+                <div class="col-2 justify-content-center">
+                    <div class="row justify-content-center"><button type="submit" class="btn btn-primary ">Rejoindre</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row bg-dark text-light my-4">
+        <div class="col-12">
+            <h2 class="featurette-heading">Mes sessions proposées</h2>
+        </div>
+    </div>
+
+    <div style="overflow:scroll; height:350px;" class="m-2">
+
+        <div class="card card-body m-2 ">
+            <div class="row  align-items-center">
+                <div class="col-2">
+                    <div class="row justify-content-center">
+                        <p>Date d'emprunt</p>
+                    </div>
+                    <div class="row justify-content-center">
+                        <p>Date de retour</p>
+                    </div>
+                </div>
+
+                <div class="col-2">
+
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-20" disabled="disabled" /></div>
+                    <div class="row justify-content-center"><input type="date" name="date" value="2021-12-29" disabled="disabled" /></div>
+                </div>
+
+                <div class="col-2">
+                    <div class="row justify-content-center">Adresse</div>
+                    <div class="row justify-content-center">30 rue de la grimpe</div>
+                </div>
+                <div class="col-2">
+                    <div class="row justify-content-center">matériel loué</div>
+                    <div class="row justify-content-center"><textarea rows="1" cols="30" disabled="disabled">chaussons, 2x tapis, baudrier</textarea></div>
+                </div>
+                <div class="col-1">
+                    <div class="row justify-content-center">Prix</div>
+                    <div class="row justify-content-center">20€/jour</div>
+                </div>
+                <div class="col-2 justify-content-center">
+                    <div class="row justify-content-center"><button type="submit" class="btn btn-primary ">Modifier</button></div>
+                </div>
+
+                <div class="col-1 justify-content-center">
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ######################### Fonctions javascript ######################### -->
+<script>
+    function rechercher() {
+        $('#modal').modal('toggle');
+
+        //Ajout d'éléments en javascript
+        //déclaration
+        var chaussons = false;
+        var baudrier = false;
+        var tapis = false;
+
+        var list = new String("Vous rechercher : ");
+
+        //recupération de variables (checkbox, dates, salle)
+        if (document.getElementById("chaussons").checked) {
+            //alert("chaussons checked");
+            chaussons = true;
+            list += "des chaussons d'escalade ; ";
+        }
+        if (document.getElementById("baudrier").checked) {
+            //alert("baudrier checked");
+            baudrier = true;
+            list += "un/des baudrier(s) ; ";
+        }
+        if (document.getElementById("tapis").checked) {
+            //alert("tapis checked");
+            tapis = true;
+            list += "un/des tapis(s) ; ";
+        }
+        let date_emprunt = document.getElementById("dateEmprunt").value;
+        let date_retour = document.getElementById("dateRetour").value;
+
+        list += " (Emprunt le : " + date_emprunt + ", Retour le : " + date_retour + ")";
+
+
+        //recupération du container d'affichage
+        let main_container = document.getElementById('rechercheContainer');
+
+        //creation de l'alerte a déclencher
+        let htmlContent = '<div class="alert alert-success alert-dismissible">' +
+            '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+            '<strong>Success!</strong> Votre choix de recherche à bien été pris en compte --> ' +
+            list + '</div>';
+
+        //Ajoute le contenu de htmlContent avant la balise fermante de main_container
+        main_container.insertAdjacentHTML('beforeend', htmlContent);
+    };
+
+    function proposer() {
+        $('#modal').modal('toggle');
+
+        //Ajout d'éléments en javascript
+        let main_container = document.getElementById('rechercheContainer');
+        let htmlContent = '<div class="alert alert-success alert-dismissible">' +
+            '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+            '<strong>Success!</strong> Vos matériels ont bien été mis en location</div>';
+
+        //Ajoute le contenu de htmlContent avant la balise fermante de main_container
+        main_container.insertAdjacentHTML('beforeend', htmlContent);
+    };
+
+
+    // Event Listener
+    document.getElementById("btnRecherche").addEventListener("click", rechercher); //validation de ce que l'on recherche
+    document.getElementById("monlien").addEventListener("click", proposer); //mise en location de matériels
+</script>
